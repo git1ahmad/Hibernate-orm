@@ -16,7 +16,7 @@ public class UpdateStudentDemo {
 		//create a session
 		Session session = factory.getCurrentSession();
 		
-		try{
+		try{    /*
 			//create a student object 
 			int studentId=1;
 			
@@ -31,6 +31,18 @@ public class UpdateStudentDemo {
 			
 			System.out.println("Updating Students");
 			myStudent.setFirstName("Scooby"); //save to memory
+                          */
+
+			session = factory.getCurrentSession();
+			session.beginTransaction();
+			//Update email for all students
+			System.out.println("update  email for all students:");
+			session.createQuery("Update Student set email='foo@gmail.com'").executeUpdate();
+			
+			
+			//commit the transaction
+			session.getTransaction().commit(); //save to database 
+		
 			
 			//commit the transaction
 			session.getTransaction().commit(); //save to database 
